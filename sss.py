@@ -106,7 +106,8 @@ def pdcfindname(sn):
             payload1['hiddenField'] = dt_string
             post = session.post(login_url, json=payload1, headers=login_headers)
             #post = session.post(login_url, data=payload1)
-            r = session.post(get_url3, data=payload3)
+            r = session.post(get_url3, json=payload3, headers=login_headers)
+            #r = session.post(get_url3, data=payload3)
             r.encoding = 'utf-8'
             html = r.text
             soup = BeautifulSoup(html, "html.parser")
