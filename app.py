@@ -75,10 +75,10 @@ def handle_text_message(event):
             line_msg = pdcfind(idnum)
             
             if line_msg.startswith('ไม่พบหมายจับ'):
-            line_bot_api.reply_message(
+                line_bot_api.reply_message(
                 event.reply_token, [
-                    FlexSendMessage(
-                            alt_text='hello',
+                FlexSendMessage(
+                alt_text='hello',
                             contents={
                                 'type': 'bubble',
                                 'body': {
