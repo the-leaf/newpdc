@@ -87,12 +87,12 @@ def handle_text_message(event):
                                 'contents': [
                                     {
                                         'type': 'text',
-                                        'text': 'คำเตือน',
+                                        'text': 'ข้อมูล',
                                         'weight': 'bold',
                                         'size': 'xl',
                                         'margin': 'none',
                                         'align': 'center',
-                                        'color': '#fc0001'
+                                        'color': '#1d23e2'
                                     },
                                     {
                                         'type': 'separator'
@@ -101,7 +101,7 @@ def handle_text_message(event):
                                         'type': 'text',
                                         'text': line_msg,
                                         'align': 'center',
-                                        'color': '#fc0001'
+                                        'color': '#03fa03'
                                     }
                                 ]
                                 }
