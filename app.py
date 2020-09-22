@@ -101,16 +101,33 @@ def handle_text_message(event):
                     FlexSendMessage(
     alt_text='hello',
     contents={
-        'type': 'bubble',
-        'direction': 'ltr',
-        'hero': {
-            'type': 'image',
-            'url': 'https://example.com/cafe.jpg',
-            'size': 'full',
-            'aspectRatio': '20:13',
-            'aspectMode': 'cover',
-            'action': { 'type': 'uri', 'uri': 'http://example.com', 'label': 'label' }
-        }
+{
+  "type": "bubble",
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "text",
+        "text": "ข้อมูล",
+        "weight": "bold",
+        "size": "xl",
+        "margin": "none",
+        "align": "center",
+        "color": "#1d23e2"
+      },
+      {
+        "type": "separator"
+      },
+      {
+        "type": "text",
+        "text": "ไม่พบหมายจับ",
+        "align": "center",
+        "color": "#03fa03"
+      }
+    ]
+  }
+}
     }
 )
                 ]
