@@ -98,10 +98,21 @@ def handle_text_message(event):
             line_msg = "ไม่มีคำสั่งนี้ในระบบ"
             line_bot_api.reply_message(
                 event.reply_token, [
-                    TextSendMessage(text='Hello, world',
-                               quick_reply=QuickReply(items=[
-                                   QuickReplyButton(action=MessageAction(label="label", text="text"))
-                               ]))
+                    FlexSendMessage(
+    alt_text='hello',
+    contents={
+        'type': 'bubble',
+        'direction': 'ltr',
+        'hero': {
+            'type': 'image',
+            'url': 'https://example.com/cafe.jpg',
+            'size': 'full',
+            'aspectRatio': '20:13',
+            'aspectMode': 'cover',
+            'action': { 'type': 'uri', 'uri': 'http://example.com', 'label': 'label' }
+        }
+    }
+)
                 ]
             )
     except Exception as e:
