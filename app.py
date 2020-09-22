@@ -72,50 +72,7 @@ def handle_text_message(event):
         elif text.startswith('#เลข '):  # broadcast 20190505
             idnum = text.split(' ')[1]
             pdcfind(idnum)
-            line_msg = pdcfind(idnum)
-            
-            if line_msg.startswith('ไม่พบหมายจับ'):
-                line_bot_api.reply_message(
-                event.reply_token, [
-                FlexSendMessage(
-                alt_text='hello',
-                            contents={
-                                'type': 'bubble',
-                                'body': {
-                                'type': 'box',
-                                'layout': 'vertical',
-                                'contents': [
-                                    {
-                                        'type': 'text',
-                                        'text': 'ข้อมูล',
-                                        'weight': 'bold',
-                                        'size': 'xl',
-                                        'margin': 'none',
-                                        'align': 'center',
-                                        'color': '#1d23e2'
-                                    },
-                                    {
-                                        'type': 'separator'
-                                    },
-                                    {
-                                        'type': 'text',
-                                        'text': line_msg,
-                                        'align': 'center',
-                                        'color': '#03fa03'
-                                    }
-                                ]
-                                }
-                            }
-                    )
-                ]
-            )
-            
-            else:
-                line_bot_api.reply_message(
-                event.reply_token, [
-                    TextSendMessage(text=line_msg),
-                ]
-            )
+
             if user_profile:
                 line_send("{}\n{}".format(user_profile.display_name, line_msg))
 

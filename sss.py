@@ -88,11 +88,20 @@ def pdcfind(ss):
                 msg_line2 = listToString(line_msg)
                 line_send = msg_line1+msg_line2
                 logout = session.post(url_out)
-                return line_send
+                
+                line_bot_api.reply_message(
+                event.reply_token, [
+                    TextSendMessage(text=line_send),
+                ]
+            )
             else:
                 line_send = "ไม่พบหมายจับ"
                 logout = session.post(url_out)
-                return line_send        
+                line_bot_api.reply_message(
+                event.reply_token, [
+                    TextSendMessage(text=line_send),
+                ]
+            )       
         #r = requests.post(url, headers=headers , data = {'message':line_send})
 
 def pdcfindname(sn):
