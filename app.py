@@ -73,6 +73,7 @@ def handle_text_message(event):
             idnum = text.split(' ')[1]
             pdcfind(idnum)
             line_msg = pdcfind(idnum)
+            print(line_msg.text)
             line_bot_api.reply_message(
                 event.reply_token, [
                     TextSendMessage(text=line_msg),
@@ -87,6 +88,7 @@ def handle_text_message(event):
             xname = xa+' '+xb
             pdcfindname(xname)
             line_msg = pdcfindname(xname)
+            print(line_msg.text)
             line_bot_api.reply_message(
                 event.reply_token, [
                     TextSendMessage(text=line_msg),
@@ -98,36 +100,7 @@ def handle_text_message(event):
             line_msg = "ไม่มีคำสั่งนี้ในระบบ"
             line_bot_api.reply_message(
                 event.reply_token, [
-                    FlexSendMessage(
-    alt_text='hello',
-    contents={
-'type': 'bubble',
-  'body': {
-    'type': 'box',
-    'layout': 'vertical',
-    'contents': [
-      {
-        'type': 'text',
-        'text': 'ข้อมูล',
-        'weight': 'bold',
-        'size': 'xl',
-        'margin': 'none',
-        'align': 'center',
-        'color': '#1d23e2'
-      },
-      {
-        'type': 'separator'
-      },
-      {
-        'type': 'text',
-        'text': 'ไม่พบหมายจับ',
-        'align': 'center',
-        'color': '#03fa03'
-      }
-    ]
-  }
-    }
-)
+                    TextSendMessage(text=line_msg)
                 ]
             )
     except Exception as e:
