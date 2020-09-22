@@ -15,6 +15,12 @@ url = 'https://notify-api.line.me/api/notify'
 token = 'cW3MsD9e9Qod9OyrPzTzRCF8MroAl91PnMlRSysxBER'
 headers = {'content-type':'application/x-www-form-urlencoded','Authorization':'Bearer '+token}
 
+login_headers = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36',
+    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+    'Accept-Language': 'en-US,en;q=0.5', 'Accept-Encoding': 'gzip, deflate'
+}
+
 
 payload1 = {
     'hiddenField': '2020-03-15 12:58:59',
@@ -61,7 +67,7 @@ def pdcfind(ss):
             dt_string = now.strftime("%y-%m-%d %H:%M:%S")
             payload1['hiddenField'] = dt_string
             time.sleep(0.05)
-            post = session.post(login_url, data=payload1)
+            post = session.post(login_url, headers=login_headers, data=payload1)
             time.sleep(0.05)
             r = session.post(get_url, data=payload2)
             time.sleep(0.05)
