@@ -1,4 +1,3 @@
-import time
 import requests
 import pandas as pd
 from bs4 import BeautifulSoup
@@ -33,8 +32,6 @@ payload3 = {
     'fname' : '0'
 }
 
-login_headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.94 Safari/537.36'}
-
 def listToString(s):  
     
     # initialize an empty string 
@@ -63,8 +60,6 @@ def pdcfind(ss):
             payload1['hiddenField'] = dt_string
             a = session.get(login_url) 
             post = session.post(login_url, data=payload1)
-            time.sleep(0.5)
-            #print(post.text)
             b = session.get(get_url) 
             r = session.post(get_url, data=payload2)
             r.encoding = 'utf-8'
@@ -110,9 +105,7 @@ def pdcfindname(sn):
             payload1['hiddenField'] = dt_string
             a = session.get(login_url) 
             post = session.post(login_url, data=payload1)
-            time.sleep(0.5)
-            #post = session.post(login_url, data=payload1)
-            b = session.get(get_url3)
+            b = session.get(get_url) 
             r = session.post(get_url3, data=payload3)
             r.encoding = 'utf-8'
             html = r.text
