@@ -1,3 +1,4 @@
+import time
 import requests
 import pandas as pd
 from bs4 import BeautifulSoup
@@ -61,7 +62,8 @@ def pdcfind(ss):
             dt_string = now.strftime("%y-%m-%d %H:%M:%S")
             payload1['hiddenField'] = dt_string
             post = session.post(login_url, json=payload1)
-            print(post.text)
+            time.sleep(4)
+            #print(post.text)
             r = session.post(get_url, json=payload2)
             r.encoding = 'utf-8'
             html = r.text
@@ -105,6 +107,7 @@ def pdcfindname(sn):
             dt_string = now.strftime("%y-%m-%d %H:%M:%S")
             payload1['hiddenField'] = dt_string
             post = session.post(login_url, json=payload1)
+            time.sleep(4)
             #post = session.post(login_url, data=payload1)
             r = session.post(get_url3, json=payload3)
             r.encoding = 'utf-8'
