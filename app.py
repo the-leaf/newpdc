@@ -111,7 +111,7 @@ def handle_text_message(event):
             )
             
             else:
-            line_bot_api.reply_message(
+                line_bot_api.reply_message(
                 event.reply_token, [
                     TextSendMessage(text=line_msg),
                 ]
