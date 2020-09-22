@@ -1,3 +1,15 @@
+from linebot.models import *
+from linebot.exceptions import (
+    InvalidSignatureError
+)
+from linebot import (
+    LineBotApi, WebhookHandler
+)
+
+line_bot_api = LineBotApi('uKVOAb1Bn3EeGsMBjCdRYkYXqrZFIv/ukCFc/SPBYIRsBKTcR92ktaKyY1JKgqW0k00uIyY0uHscO0rJaxMfS+6QBLv3zjMsPgem76rTCrw1NaHvOvDlPBU6sX43W0utxaP9pYCAQeoJNyhvpwUlSAdB04t89/1O/w1cDnyilFU=')
+# Channel Secret
+handlerx = WebhookHandler('066c395ef7192ab55179e5595dd47bf7')
+
 import requests
 import pandas as pd
 from bs4 import BeautifulSoup
