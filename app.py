@@ -73,6 +73,44 @@ def handle_text_message(event):
             idnum = text.split(' ')[1]
             pdcfind(idnum)
             line_msg = pdcfind(idnum)
+            
+            if line_msg.startswith('ไม่พบหมายจับ'):
+            line_bot_api.reply_message(
+                event.reply_token, [
+                    FlexSendMessage(
+                            alt_text='hello',
+                            contents={
+                                'type': 'bubble',
+                                'body': {
+                                'type': 'box',
+                                'layout': 'vertical',
+                                'contents': [
+                                    {
+                                        'type': 'text',
+                                        'text': 'คำเตือน',
+                                        'weight': 'bold',
+                                        'size': 'xl',
+                                        'margin': 'none',
+                                        'align': 'center',
+                                        'color': '#fc0001'
+                                    },
+                                    {
+                                        'type': 'separator'
+                                    },
+                                    {
+                                        'type': 'text',
+                                        'text': line_msg,
+                                        'align': 'center',
+                                        'color': '#fc0001'
+                                    }
+                                ]
+                                }
+                            }
+                    )
+                ]
+            )
+            
+            else:
             line_bot_api.reply_message(
                 event.reply_token, [
                     TextSendMessage(text=line_msg),
