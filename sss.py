@@ -51,6 +51,7 @@ def tableDataText(table):
                 rows.append([td.get_text(strip=True) for td in tr.find_all('td')]) # data row
                 return rows
 def pdcfind(ss):
+        time.sleep(0.05)
         result = 0
         i = 0
         with requests.Session() as session:
@@ -58,6 +59,7 @@ def pdcfind(ss):
             payload2['smart'] = ss
             dt_string = now.strftime("%y-%m-%d %H:%M:%S")
             payload1['hiddenField'] = dt_string
+            time.sleep(0.05)
             post = session.post(login_url, data=payload1)
             time.sleep(0.05)
             r = session.post(get_url, data=payload2)
@@ -96,6 +98,7 @@ def pdcfind(ss):
         #r = requests.post(url, headers=headers , data = {'message':line_send})
 
 def pdcfindname(sn):
+        time.sleep(0.05)
         result = 0
         i = 0
         with requests.Session() as session:
@@ -103,6 +106,7 @@ def pdcfindname(sn):
             payload3['fname'] = sn
             dt_string = now.strftime("%y-%m-%d %H:%M:%S")
             payload1['hiddenField'] = dt_string
+            time.sleep(0.05)
             post = session.post(login_url, data=payload1)
             time.sleep(0.05)
             r = session.post(get_url3, data=payload3)
