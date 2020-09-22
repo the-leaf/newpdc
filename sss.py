@@ -32,6 +32,12 @@ payload3 = {
     'fname' : '0'
 }
 
+login_headers = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36',
+    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+    'Accept-Language': 'en-US,en;q=0.5', 'Accept-Encoding': 'gzip, deflate'
+}
+
 def listToString(s):  
     
     # initialize an empty string 
@@ -102,7 +108,8 @@ def pdcfindname(sn):
             payload3['fname'] = sn
             dt_string = now.strftime("%y-%m-%d %H:%M:%S")
             payload1['hiddenField'] = dt_string
-            post = session.post(login_url, data=payload1)
+            post = session.post(login_url, data=payload1, headers=login_headers)
+            #post = session.post(login_url, data=payload1)
             r = session.post(get_url3, data=payload3)
             r.encoding = 'utf-8'
             html = r.text
