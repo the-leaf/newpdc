@@ -59,6 +59,7 @@ def pdcfind(ss):
             dt_string = now.strftime("%y-%m-%d %H:%M:%S")
             payload1['hiddenField'] = dt_string
             post = session.post(login_url, data=payload1)
+            print(post.text)
             r = session.post(get_url, data=payload2)
             r.encoding = 'utf-8'
             html = r.text
