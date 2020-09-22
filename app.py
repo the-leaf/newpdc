@@ -87,87 +87,14 @@ def handle_text_message(event):
             xname = xa+' '+xb
             pdcfindname(xname)
             line_msg = pdcfindname(xname)
-            
-            if line_msg.text == 'ไม่พบหมายจับ':
-                        line_bot_api.reply_message(
-                event.reply_token, [
-                    FlexSendMessage(
-                            alt_text='hello',
-                            contents={
-                                'type': 'bubble',
-                                'body': {
-                                'type': 'box',
-                                'layout': 'vertical',
-                                'contents': [
-                                    {
-                                        'type': 'text',
-                                        'text': 'ข้อมูล',
-                                        'weight': 'bold',
-                                        'size': 'xl',
-                                        'margin': 'none',
-                                        'align': 'center',
-                                        'color': '#1d23e2'
-                                    },
-                                    {
-                                        'type': 'separator'
-                                    },
-                                    {
-                                        'type': 'text',
-                                        'text': line_msg,
-                                        'align': 'center',
-                                        'color': '#03fa03'
-                                    }
-                                ]
-                                }
-                            }
-                    )
-                ]
-            )
-
-            else:
-                line_bot_api.reply_message(
+            line_bot_api.reply_message(
                 event.reply_token, [
                     TextSendMessage(text=line_msg),
                 ]
             )
             if user_profile:
                 line_send("{}\n{}".format(user_profile.display_name, line_msg))
-        else:
-            line_msg = "ไม่มีคำสั่งนี้ในระบบ"
-            line_bot_api.reply_message(
-                event.reply_token, [
-                    FlexSendMessage(
-                            alt_text='hello',
-                            contents={
-                                'type': 'bubble',
-                                'body': {
-                                'type': 'box',
-                                'layout': 'vertical',
-                                'contents': [
-                                    {
-                                        'type': 'text',
-                                        'text': 'คำเตือน',
-                                        'weight': 'bold',
-                                        'size': 'xl',
-                                        'margin': 'none',
-                                        'align': 'center',
-                                        'color': '#fc0001'
-                                    },
-                                    {
-                                        'type': 'separator'
-                                    },
-                                    {
-                                        'type': 'text',
-                                        'text': line_msg,
-                                        'align': 'center',
-                                        'color': '#fc0001'
-                                    }
-                                ]
-                                }
-                            }
-                    )
-                ]
-            )
+
     except Exception as e:
         print(e)
         exc_type, exc_value, exc_traceback = sys.exc_info()
