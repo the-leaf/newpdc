@@ -98,7 +98,10 @@ def handle_text_message(event):
             line_msg = "ไม่มีคำสั่งนี้ในระบบ"
             line_bot_api.reply_message(
                 event.reply_token, [
-                    TextSendMessage(text=line_msg)
+                    TextSendMessage(text='Hello, world',
+                               quick_reply=QuickReply(items=[
+                                   QuickReplyButton(action=MessageAction(label="label", text="text"))
+                               ]))
                 ]
             )
     except Exception as e:
