@@ -114,7 +114,7 @@ def pdcfindname(sn):
             dt_string = now.strftime("%y-%m-%d %H:%M:%S")
             payload1['hiddenField'] = dt_string
             time.sleep(1)
-            post = session.post(login_url, data=payload1)
+            post = session.post(login_url, headers=login_headers, data=payload1)
             time.sleep(1)
             r = session.post(get_url3, data=payload3)
             time.sleep(1)
