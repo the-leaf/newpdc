@@ -1,6 +1,5 @@
 import requests
 import pandas as pd
-import time
 from bs4 import BeautifulSoup
 from datetime import datetime
 
@@ -14,12 +13,6 @@ now = datetime.now()
 url = 'https://notify-api.line.me/api/notify'
 token = 'cW3MsD9e9Qod9OyrPzTzRCF8MroAl91PnMlRSysxBER'
 headers = {'content-type':'application/x-www-form-urlencoded','Authorization':'Bearer '+token}
-
-login_headers = {
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36',
-    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
-    'Accept-Language': 'en-US,en;q=0.5', 'Accept-Encoding': 'gzip, deflate'
-}
 
 
 payload1 = {
@@ -58,7 +51,6 @@ def tableDataText(table):
                 rows.append([td.get_text(strip=True) for td in tr.find_all('td')]) # data row
                 return rows
 def pdcfind(ss):
-        time.sleep(0.05)
         result = 0
         i = 0
         with requests.Session() as session:
@@ -66,11 +58,8 @@ def pdcfind(ss):
             payload2['smart'] = ss
             dt_string = now.strftime("%y-%m-%d %H:%M:%S")
             payload1['hiddenField'] = dt_string
-            time.sleep(0.05)
-            post = session.post(login_url, headers=login_headers, data=payload1)
-            time.sleep(0.05)
+            post = session.post(login_url, data=payload1)
             r = session.post(get_url, data=payload2)
-            time.sleep(0.05)
             r.encoding = 'utf-8'
             html = r.text
             soup = BeautifulSoup(html, "html.parser")
@@ -105,7 +94,6 @@ def pdcfind(ss):
         #r = requests.post(url, headers=headers , data = {'message':line_send})
 
 def pdcfindname(sn):
-        time.sleep(1)
         result = 0
         i = 0
         with requests.Session() as session:
@@ -113,11 +101,8 @@ def pdcfindname(sn):
             payload3['fname'] = sn
             dt_string = now.strftime("%y-%m-%d %H:%M:%S")
             payload1['hiddenField'] = dt_string
-            time.sleep(1)
-            post = session.post(login_url, headers=login_headers, data=payload1)
-            time.sleep(1)
+            post = session.post(login_url, data=payload1)
             r = session.post(get_url3, data=payload3)
-            time.sleep(1)
             r.encoding = 'utf-8'
             html = r.text
             soup = BeautifulSoup(html, "html.parser")
