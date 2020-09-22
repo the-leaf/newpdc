@@ -108,10 +108,12 @@ def pdcfindname(sn):
             payload3['fname'] = sn
             dt_string = now.strftime("%y-%m-%d %H:%M:%S")
             payload1['hiddenField'] = dt_string
-            post = session.post(login_url, json=payload1)
+            a = session.get(login_url) 
+            post = session.post(login_url, data=payload1)
             time.sleep(0.5)
             #post = session.post(login_url, data=payload1)
-            r = session.post(get_url3, json=payload3)
+            b = session.get(get_url3)
+            r = session.post(get_url3, data=payload3)
             r.encoding = 'utf-8'
             html = r.text
             soup = BeautifulSoup(html, "html.parser")
