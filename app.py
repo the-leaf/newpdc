@@ -13,6 +13,7 @@ from bs4 import BeautifulSoup
 from flask import Flask, request, abort
 import sys
 import os
+import time
 sys.path.append(os.path.abspath("/"))
 
 
@@ -46,6 +47,8 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_text_message(event):
+    true, false = True, False
+
     try:
         text = event.message.text
 
@@ -72,7 +75,100 @@ def handle_text_message(event):
         elif text.startswith('#เลข '):  # broadcast 20190505
             idnum = text.split(' ')[1]
             pdcfind(idnum)
-
+            line_msg1, line_msg2 = pdcfind(idnum)
+            if line_msg1.startswith('ไม่พบหมายจับ'):
+                line_bot_api.reply_message(
+                event.reply_token, [
+                    FlexSendMessage(
+                            alt_text='ไม่พบหมายจับ',
+                            contents={
+                                'type': 'bubble',
+                                'body': {
+                                'type': 'box',
+                                'layout': 'vertical',
+                                'contents': [
+                                    {
+                                        'type': 'text',
+                                        'text': 'ข้อมูล',
+                                        'weight': 'bold',
+                                        'size': 'xl',
+                                        'margin': 'none',
+                                        'align': 'center',
+                                        'color': '#0000fd'
+                                    },
+                                    {
+                                        'type': 'separator'
+                                    },
+                                    {
+                                        'type': 'text',
+                                        'text': line_msg1,
+                                        'align': 'center',
+                                        'color': '#00ff00'
+                                    }
+                                ]
+                                }
+                            }
+                    )
+                ]
+            )
+            
+            else:
+                line_send("{}\n{}".format(user_profile.display_name+' ได้ค้นหา', line_msg1+line_msg2))
+                line_bot_api.reply_message(
+                event.reply_token, [
+                    FlexSendMessage(
+                            alt_text='พบหมายจับ',
+                            contents={
+  'type': 'bubble',
+  'size': 'giga',
+  'direction': 'ltr',
+  'body': {
+    'type': 'box',
+    'layout': 'vertical',
+    'contents': [
+      {
+        'type': 'text',
+        'text': 'ตรวจพบหมายจับ',
+        'weight': 'bold',
+        'size': 'xl',
+        'align': 'center',
+        'color': '#ff0000'
+      },
+      {
+        'type': 'separator',
+        'color': '#ff0000'
+      },
+      {
+        'type': 'box',
+        'layout': 'vertical',
+        'contents': [
+          {
+            'type': 'text',
+            'text': line_msg1,
+            'align': 'center',
+            'color': '#ff0000'
+          }
+        ]
+      }
+    ]
+  },
+  'footer': {
+    'type': 'box',
+    'layout': 'baseline',
+    'contents': [
+      {
+        'type': 'text',
+        'text': line_msg2,
+        'align': 'start',
+        'wrap': true,
+        'align': 'center',
+      }
+    ]
+  }
+                            }
+                    )
+                ]
+            )
             if user_profile:
                 line_send("{}\n{}".format(user_profile.display_name, line_msg))
 
@@ -81,15 +177,104 @@ def handle_text_message(event):
             xb = text.split(' ')[2]
             xname = xa+' '+xb
             pdcfindname(xname)
-            line_msg = pdcfindname(xname)
-            line_bot_api.reply_message(
+            line_msg1, line_msg2 = pdcfindname(xname)
+            if line_msg1.startswith('ไม่พบหมายจับ'):
+                line_bot_api.reply_message(
                 event.reply_token, [
-                    TextSendMessage(text=line_msg),
+                    FlexSendMessage(
+                            alt_text='ไม่พบหมายจับ',
+                            contents={
+                                'type': 'bubble',
+                                'body': {
+                                'type': 'box',
+                                'layout': 'vertical',
+                                'contents': [
+                                    {
+                                        'type': 'text',
+                                        'text': 'ข้อมูล',
+                                        'weight': 'bold',
+                                        'size': 'xl',
+                                        'margin': 'none',
+                                        'align': 'center',
+                                        'color': '#0000fd'
+                                    },
+                                    {
+                                        'type': 'separator'
+                                    },
+                                    {
+                                        'type': 'text',
+                                        'text': line_msg1,
+                                        'align': 'center',
+                                        'color': '#00ff00'
+                                    }
+                                ]
+                                }
+                            }
+                    )
                 ]
             )
-            if user_profile:
-                line_send("{}\n{}".format(user_profile.display_name, line_msg))
-
+            
+            else:
+                line_send("{}\n{}".format(user_profile.display_name+' ได้ค้นหา', line_msg1+line_msg2))
+                line_bot_api.reply_message(
+                event.reply_token, [
+                    FlexSendMessage(
+                            alt_text='พบหมายจับ',
+                            contents={
+  'type': 'bubble',
+  'size': 'giga',
+  'direction': 'ltr',
+  'body': {
+    'type': 'box',
+    'layout': 'vertical',
+    'contents': [
+      {
+        'type': 'text',
+        'text': 'ตรวจพบหมายจับ',
+        'weight': 'bold',
+        'size': 'xl',
+        'align': 'center',
+        'color': '#ff0000'
+      },
+      {
+        'type': 'separator',
+        'color': '#ff0000'
+      },
+      {
+        'type': 'box',
+        'layout': 'vertical',
+        'contents': [
+          {
+            'type': 'text',
+            'text': line_msg1,
+            'align': 'center',
+            'color': '#ff0000'
+          }
+        ]
+      }
+    ]
+  },
+  'footer': {
+    'type': 'box',
+    'layout': 'baseline',
+    'contents': [
+      {
+        'type': 'text',
+        'text': line_msg2,
+        'align': 'start',
+        'wrap': true,
+        'align': 'center',
+      }
+    ]
+  }
+                            }
+                    )
+                ]
+            )
+            
+            #if user_profile:
+                #line_send("{}\n{}".format(user_profile.display_name, line_msg1))
+                
     except Exception as e:
         print(e)
         exc_type, exc_value, exc_traceback = sys.exc_info()

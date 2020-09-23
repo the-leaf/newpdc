@@ -1,15 +1,3 @@
-from linebot.models import *
-from linebot.exceptions import (
-    InvalidSignatureError
-)
-from linebot import (
-    LineBotApi, WebhookHandler
-)
-
-line_bot_api = LineBotApi('uKVOAb1Bn3EeGsMBjCdRYkYXqrZFIv/ukCFc/SPBYIRsBKTcR92ktaKyY1JKgqW0k00uIyY0uHscO0rJaxMfS+6QBLv3zjMsPgem76rTCrw1NaHvOvDlPBU6sX43W0utxaP9pYCAQeoJNyhvpwUlSAdB04t89/1O/w1cDnyilFU=')
-# Channel Secret
-handlerx = WebhookHandler('066c395ef7192ab55179e5595dd47bf7')
-
 import requests
 import pandas as pd
 from bs4 import BeautifulSoup
@@ -100,20 +88,12 @@ def pdcfind(ss):
                 msg_line2 = listToString(line_msg)
                 line_send = msg_line1+msg_line2
                 logout = session.post(url_out)
-                
-                line_bot_api.reply_message(
-                event.reply_token, [
-                    TextSendMessage(text=line_send),
-                ]
-            )
+                return msg_line1, msg_line2
             else:
-                line_send = "ไม่พบหมายจับ"
+                line_send1 = "ไม่พบหมายจับ"
+                line_send2 = "ไม่พบหมายจับ"
                 logout = session.post(url_out)
-                line_bot_api.reply_message(
-                event.reply_token, [
-                    TextSendMessage(text=line_send),
-                ]
-            )       
+                return line_send1, line_send2
         #r = requests.post(url, headers=headers , data = {'message':line_send})
 
 def pdcfindname(sn):
@@ -154,15 +134,15 @@ def pdcfindname(sn):
                 msg_line2 = listToString(line_msg)
                 line_send = msg_line1+msg_line2
                 logout = session.post(url_out)
-                return line_send
+                return msg_line1, msg_line2;
             else:
-                line_send = "ไม่พบหมายจับ"
+                line_send1 = "ไม่พบหมายจับ"
+                line_send2 = "ไม่พบหมายจับ"
                 logout = session.post(url_out)
-                return line_send        
+                return line_send1, line_send2 
         #r = requests.post(url, headers=headers , data = {'message':line_send})
 
 
 
 def line_send(message):
     r = requests.post(url, headers=headers, data={'message': message})
-    print(r.text)
