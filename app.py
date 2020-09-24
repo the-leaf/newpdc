@@ -113,7 +113,7 @@ def handle_text_message(event):
             )
             
             else:
-                line_send("{}\n{}".format(user_profile.display_name+' ได้ค้นหา', line_msg1+line_msg2))
+                #line_send("{}\n{}".format(user_profile.display_name+' ได้ค้นหา', line_msg1+line_msg2))
                 line_bot_api.reply_message(
                 event.reply_token, [
                     FlexSendMessage(
@@ -169,8 +169,8 @@ def handle_text_message(event):
                     )
                 ]
             )
-            if user_profile:
-                line_send("{}\n{}".format(user_profile.display_name, line_msg))
+            #if user_profile:
+                #line_send("{}\n{}".format(user_profile.display_name, line_msg))
 
         elif text.startswith('#ชื่อ '):  # broadcast 20190505
             xa = text.split(' ')[1]
@@ -215,7 +215,7 @@ def handle_text_message(event):
             )
             
             else:
-                line_send("{}\n{}".format(user_profile.display_name+' ได้ค้นหา', line_msg1+line_msg2))
+                #line_send("{}\n{}".format(user_profile.display_name+' ได้ค้นหา', line_msg1+line_msg2))
                 line_bot_api.reply_message(
                 event.reply_token, [
                     FlexSendMessage(
