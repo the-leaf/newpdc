@@ -3,10 +3,10 @@ import pandas as pd
 from bs4 import BeautifulSoup
 from datetime import datetime
 
-login_url = 'http://pdc.police.go.th/index.php'
-url_out = "http://pdc.police.go.th/arrest_search?KT_logout_now=1"
-get_url = 'http://pdc.police.go.th/smart_c.php'
-get_url3 = 'http://pdc.police.go.th/result_aa.php'
+login_url = 'https://pdc.police.go.th/index.php'
+url_out = "https://pdc.police.go.th/arrest_search?KT_logout_now=1"
+get_url = 'https://pdc.police.go.th/smart_c.php'
+get_url3 = 'https://pdc.police.go.th/result_aa.php'
 wan_url=''
 now = datetime.now()
 
